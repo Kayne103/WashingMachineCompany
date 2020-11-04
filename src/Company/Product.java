@@ -3,7 +3,7 @@ package Company;
 import javax.swing.*;
 import java.sql.*;
 
-public class Product extends JFrame {
+public class Product{
 
     public static void addProduct(Connection connection, String productNumber, String productName, Double productCost,
             String companyName) {
