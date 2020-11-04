@@ -5,6 +5,7 @@
       <element id="module-output" name="WashingMachineCompany" />
       <element id="extracted-dir" path="$PROJECT_DIR$/../rs2xml.jar" path-in-jar="/" />
       <element id="extracted-dir" path="/usr/share/java/mysql-connector-java-8.0.22.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../ojdbc6.jar" path-in-jar="/" />
     </root>
   </artifact>
 </component>

@@ -3,6 +3,7 @@ import java.sql.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import Company.*;
+import Customer.*;
 import net.proteanit.sql.DbUtils;
 
 public class appGui extends JFrame{
@@ -25,13 +26,35 @@ public class appGui extends JFrame{
     private JButton alterProductsButton;
     private JButton alterEmployeeButton;
     private JButton addPartButton;
-    private JTable table1;
+    private JTable partsTable;
     private JButton deletePartButton;
     private JButton alterPartButton;
-    private JTable table2;
+    private JTable machinesTable;
     private JButton button1;
     private JButton button2;
     private JButton button3;
+    private JLabel employeesLabel;
+    private JLabel productsLabel;
+    private JLabel partsLabel;
+    private JLabel machinesLabel;
+    private JTabbedPane tabbedPane2;
+    private JPanel customerPanel;
+    private JPanel ordersPanel;
+    private JPanel reportsPanel;
+    private JButton registerNewCustomerButton;
+    private JButton deleteCustomerButton;
+    private JButton changeDetailsOfCustomerButton;
+    private JTable ordersTable;
+    private JLabel welcomeLabel;
+    private JLabel makeAnOrderLabel;
+    private JButton orderButton;
+    private JTextField productNumberTextField;
+    private JTextField customerIdTextField;
+    private JTextField quantityTextField;
+    private JLabel availableProductsLabel;
+    private JLabel productNumberLabel;
+    private JLabel customerIdLabel;
+    private JLabel quantityLabel;
 
     public appGui(Connection connection) throws ClassNotFoundException, InstantiationException, IllegalAccessException,
             UnsupportedLookAndFeelException, SQLException {
@@ -56,5 +79,16 @@ public class appGui extends JFrame{
         });
 
         productTable.setModel(DbUtils.resultSetToTableModel(Company.Product.viewProducts((java.sql.Connection) connection)));
+        employeeTable.setModel(DbUtils.resultSetToTableModel(Company.Employee.viewEmployees((java.sql.Connection) connection)));
+        machinesTable.setModel(DbUtils.resultSetToTableModel(Company.Machine.viewMachines((java.sql.Connection) connection)));
+        partsTable.setModel(DbUtils.resultSetToTableModel(Company.Part.viewParts((java.sql.Connection) connection)));
+        orderButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                Customer.orders.addOrder(connection,productNumberTextField.getText(),customerIdTextField.getText(),Integer.parseInt(quantityTextField.getText()));
+            }
+        });
+
+        ordersTable.setModel(DbUtils.resultSetToTableModel(Company.Product.viewProducts((java.sql.Connection) connection)));
     }
 }
