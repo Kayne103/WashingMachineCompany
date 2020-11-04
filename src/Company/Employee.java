@@ -35,6 +35,6 @@ public class Employee {
 
     public static ResultSet viewEmployees(Connection connection) throws SQLException {
             Statement stmt = connection.createStatement();
-            return stmt.executeQuery("select * from Employees");
+            return stmt.executeQuery("select * from Employee");
     }
 }

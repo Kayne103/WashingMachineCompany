@@ -12,7 +12,7 @@ public class customer {
      * @param customerName    Customer Name
      * @param customerAddress Customer Physical Address
      */
-    static void addCustomer(Connection conn, int customerID, String customerName, String customerAddress) {
+    public static void addCustomer(Connection conn, int customerID, String customerName, String customerAddress) {
         try {
             String query = "insert into Customer(CustomerID,CustomerName,CustomerAddress) VALUES(?,?,?)";
             PreparedStatement stmt = conn.prepareStatement(query);
@@ -33,7 +33,7 @@ public class customer {
      * @param conn       Database Connection
      * @param customerID Customer Identity Number
      */
-    static void deleteCustomer(Connection conn, int customerID) {
+    public static void deleteCustomer(Connection conn, int customerID) {
         try {
 
             String query = "delete from Customer where customerID=?";
@@ -51,16 +51,9 @@ public class customer {
      * Display all records of customers from the database.
      * @param connection Database connection
      */
-    static void viewCustomers(Connection connection){
-        try {
-            Statement stmt = connection.createStatement();
-            ResultSet rs = stmt.executeQuery("select * from Customer");
-
-            while (rs.next())
-                System.out.println(rs.getInt(1) + "  " + rs.getString(2) + "  " + rs.getString(3));
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null,e.getMessage());
-        }
+    public static ResultSet viewCustomers(Connection connection) throws SQLException {
+        Statement stmt = connection.createStatement();
+        return stmt.executeQuery("select * from Customers");
     }
 
     /**
@@ -69,7 +62,7 @@ public class customer {
      * @param customerID Customer identity number.
      * @param customerName New customer name.
      */
-    static void updateCustomerName(Connection connection,int customerID,String customerName){
+    public static void updateCustomerName(Connection connection,int customerID,String customerName){
         try {
             String query = ""; // TODO Tsenya query
             PreparedStatement stmt = connection.prepareStatement(query);
@@ -88,7 +81,7 @@ public class customer {
      * @param customerID Customer identity number.
      * @param customerAddress New customer address.
      */
-    static void updateCustomerAddress(Connection connection,int customerID,String customerAddress){
+    public static void updateCustomerAddress(Connection connection,int customerID,String customerAddress){
         try {
             String query = ""; // TODO Tsenya query
             PreparedStatement stmt = connection.prepareStatement(query);
