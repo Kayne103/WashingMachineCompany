@@ -19,20 +19,12 @@ public class appGui extends JFrame{
     private JPanel machinePanel;
     private JTable employeeTable;
     private JButton addEmployeeButton;
-    private JButton deleteEmployeeButton;
     private JTable productTable;
     private JButton addProductButton;
-    private JButton deleteProductButton;
-    private JButton alterProductsButton;
-    private JButton alterEmployeeButton;
     private JButton addPartButton;
     private JTable partsTable;
-    private JButton deletePartButton;
-    private JButton alterPartButton;
     private JTable machinesTable;
-    private JButton button1;
-    private JButton button2;
-    private JButton button3;
+    private JButton addMachineButton;
     private JLabel employeesLabel;
     private JLabel productsLabel;
     private JLabel partsLabel;
@@ -42,8 +34,6 @@ public class appGui extends JFrame{
     private JPanel ordersPanel;
     private JPanel reportsPanel;
     private JButton registerNewCustomerButton;
-    private JButton deleteCustomerButton;
-    private JButton changeDetailsOfCustomerButton;
     private JTable ordersTable;
     private JLabel welcomeLabel;
     private JLabel makeAnOrderLabel;
@@ -55,6 +45,18 @@ public class appGui extends JFrame{
     private JLabel productNumberLabel;
     private JLabel customerIdLabel;
     private JLabel quantityLabel;
+    private JTextField pNumtextField;
+    private JButton searchForCustomerButton;
+    private JLabel pNumLabel;
+    private JButton searchForEmployeeButton;
+    private JButton searchForPartsButton;
+    private JTextField MachineLocationtextField;
+    private JButton searchForMachineButton;
+    private JButton assembleProductButton;
+    private JButton addSupervisorButton;
+    private JButton addOperatorButton;
+    private JButton addMadeOnButton;
+    private JButton addMadeByButton;
 
     public appGui(Connection connection) throws ClassNotFoundException, InstantiationException, IllegalAccessException,
             UnsupportedLookAndFeelException, SQLException {
@@ -90,5 +92,70 @@ public class appGui extends JFrame{
         });
 
         ordersTable.setModel(DbUtils.resultSetToTableModel(Company.Product.viewProducts((java.sql.Connection) connection)));
+        searchForCustomerButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                try {
+                    Reports.searchForCustomer(connection,pNumtextField.getText());
+                } catch (SQLException throwable) {
+                    throwable.printStackTrace();
+                }
+            }
+        });
+        addEmployeeButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                new AddEmployee(connection).setVisible(true);
+            }
+        });
+        addPartButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                new AddPart(connection).setVisible(true);
+            }
+        });
+        addMachineButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                    new AddMachine(connection).setVisible(true);
+            }
+        });
+
+        registerNewCustomerButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                new Customer.AddCustomer(connection).setVisible(true);
+            }
+        });
+        addSupervisorButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                new Company.AddSupervisor(connection).setVisible(true);
+            }
+        });
+        addOperatorButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                new AddOperator(connection).setVisible(true);
+            }
+        });
+        assembleProductButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                new AssemleProduct(connection).setVisible(true);
+            }
+        });
+        addMadeOnButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                new AddMadeOn(connection).setVisible(true);
+            }
+        });
+        addMadeByButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                new AddMadeBy(connection).setVisible(true);
+            }
+        });
     }
 }

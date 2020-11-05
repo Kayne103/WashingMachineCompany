@@ -21,7 +21,7 @@ public class addProduct extends JFrame{
         add(root);
         setTitle("Add Products");
         setSize(315,330);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
         addProductButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
